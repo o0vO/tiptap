@@ -4,7 +4,7 @@ import { Decoration, DecorationSet, EditorView } from '@tiptap/pm/view'
 
 import { findSuggestionMatch as defaultFindSuggestionMatch } from './findSuggestionMatch.js'
 
-export interface SuggestionOptions<I = any> {
+export interface SuggestionOptions<I = any, Props = I> {
   pluginKey?: PluginKey
   editor: Editor
   char?: string
@@ -13,7 +13,7 @@ export interface SuggestionOptions<I = any> {
   startOfLine?: boolean
   decorationTag?: string
   decorationClass?: string
-  command?: <Props = I>(props: { editor: Editor; range: Range; props: Props }) => void
+  command?: (props: { editor: Editor; range: Range; props: Props }) => void
   items?: (props: { query: string; editor: Editor }) => I[] | Promise<I[]>
   render?: () => {
     onBeforeStart?: (props: SuggestionProps<I>) => void
@@ -271,3 +271,4 @@ export function Suggestion<I = any>({
 
   return plugin
 }
+
