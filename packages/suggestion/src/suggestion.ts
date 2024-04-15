@@ -13,7 +13,7 @@ export interface SuggestionOptions<I = any> {
   startOfLine?: boolean
   decorationTag?: string
   decorationClass?: string
-  command?: (props: { editor: Editor; range: Range; props: I }) => void
+  command?: <Props = I>(props: { editor: Editor; range: Range; props: Props }) => void
   items?: (props: { query: string; editor: Editor }) => I[] | Promise<I[]>
   render?: () => {
     onBeforeStart?: (props: SuggestionProps<I>) => void
